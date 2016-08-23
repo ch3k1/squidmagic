@@ -2,7 +2,13 @@
 
 squidmagic is a tool designed to analyze a web-based network traffic to detect central command and control (C&C) servers and Malicious site, using Squid proxy server and spamhaus.
 
-## simple squid3 configuration to Allow all machines to all sites
+## Install Squid and configure Proxy server. (Ubuntu)
+
+```
+apt-get -y install squid3
+```
+
+## simple squid3 configuration to Allow all machines to all sites ( configuration file /etc/squid3/squid.conf)
 
 ```
 http_access allow all 
