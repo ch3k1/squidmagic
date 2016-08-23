@@ -18,7 +18,7 @@ def sigint_handler(signum, frame):
         sys.exit(0)
 signal.signal(signal.SIGINT, sigint_handler)
  
-class VtApi(object):
+class squidmagic(object):
     def __init__(self, apiattr, species):
         self.apiattr = apiattr
         self.species = species
@@ -28,9 +28,9 @@ class VtApi(object):
     def getSpecies(self):
         return self.species
         
-class Banner(VtApi):
+class Banner(squidmagic):
     def __init__(self, apiattr):
-        VtApi.__init__(self, apiattr, """
+        squidmagic.__init__(self, apiattr, """
                  _     _                       _      
                 (_)   | |                     (_)     
  ___  __ _ _   _ _  __| |_ __ ___   __ _  __ _ _  ___ 
