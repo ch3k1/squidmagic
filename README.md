@@ -18,7 +18,7 @@ http_access allow all
 
 ```
 [spamhaus]
-query_url = 'http://www.spamhaus.org/query/bl?ip='
+query_url = http://www.spamhaus.org/query/bl?ip=
 ```
 
 ## usage
