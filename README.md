@@ -10,8 +10,9 @@ apt-get -y install squid3
 
 ## simple squid3 configuration to Allow all machines to all sites
 
+# Add the following config to the /etc/squid3/squid.conf file
+
 ```
-Add the following to the /etc/squid3/squid.conf file
 http_access allow all 
 ```
 
