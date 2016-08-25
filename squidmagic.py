@@ -2,12 +2,20 @@
 import sys,os,argparse,re
 import signal,time
 import dns.resolver
+import zmq
 from sh import tail
 from termcolor import colored
 from config.config import spamhaus
 from modules import retcodes
 from core import color
 colors = color.colors()
+
+# ZeroMQ Context
+context = zmq.Context()
+
+# This is our new stuff
+zmq_socket = context.socket(zmq.PUSH)
+zmq_socket.connect("tcp://127.0.0.1:5555")
 
 if len(sys.argv) <= 1:
     print("Please give some options, type -h for more information")
@@ -198,8 +206,12 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
             response = sh.check_status(domain_ip)
             if response['status'] == '0':
                 print '\t', colored("safe server detected, host or ip is "  + domain_ip, 'green')
+                msg = { 'host' : domain_ip, 'status' : 'safe' }
+                zmq_socket.send_json(msg)
             else:
                 print '\t', colored("Spam server detected, ip is "  + domain_ip, 'red')
+                msg = { 'host' : domain_ip, 'status' : 'unsafe' }
+                zmq_socket.send_json(msg)
 
         def css_spamhaus():
             sys.stdout.write(colored(colors['BOLD']['code'] + "Analyzing by SBL_CSS Advisory...\n" + colors['END']['code'], 'blue'))
@@ -214,8 +226,12 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
             response = sh.check_status(domain_ip)
             if response['status'] == '0':
                 print '\t', colored("safe server detected, host or ip is "  + domain_ip, 'green')
+                msg = { 'host' : domain_ip, 'status' : 'safe' }
+                zmq_socket.send_json(msg)
             else:
                 print '\t', colored("Spam server detected, ip is "  + domain_ip, 'red')
+                msg = { 'host' : domain_ip, 'status' : 'unsafe' }
+                zmq_socket.send_json(msg)
 
         def pbl_spamhaus():
             sys.stdout.write(colored(colors['BOLD']['code'] + "Analyzing by PBL Advisory...\n" + colors['END']['code'], 'blue'))
@@ -231,8 +247,12 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
 
             if response['status'] == '0':
                 print '\t', colored("safe server detected, host or ip is "  + domain_ip, 'green')
+                msg = { 'host' : domain_ip, 'status' : 'safe' }
+                zmq_socket.send_json(msg)
             else:
                 print '\t', colored("Spam server detected, ip is "  + domain_ip, 'red')
+                msg = { 'host' : domain_ip, 'status' : 'unsafe' }
+                zmq_socket.send_json(msg)
         
         def xbl_spamhaus():
             sys.stdout.write(colored(colors['BOLD']['code'] + "Analyzing by XBL Advisory...\n" + colors['END']['code'], 'blue'))
@@ -248,8 +268,12 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
             
             if response['status'] == '0':
                 print '\t', colored("safe server detected, host or ip is "  + domain_ip, 'green')
+                msg = { 'host' : domain_ip, 'status' : 'safe' }
+                zmq_socket.send_json(msg)
             else:
                 print '\t', colored("Malicious web server detected, ip is "  + domain_ip, 'red')
+                msg = { 'host' : domain_ip, 'status' : 'unsafe' }
+                zmq_socket.send_json(msg)
 
         def main():
            sbl_spamhaus()
