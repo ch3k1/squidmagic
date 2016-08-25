@@ -206,11 +206,11 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
             response = sh.check_status(domain_ip)
             if response['status'] == '0':
                 print '\t', colored("safe server detected, host or ip is "  + domain_ip, 'green')
-                msg = { 'host' : domain_ip, 'status' : 'safe' }
+                msg = { 'squidmagic': 'squidmagic','host' : domain_ip, 'status' : 'safe' }
                 zmq_socket.send_json(msg)
             else:
                 print '\t', colored("Spam server detected, ip is "  + domain_ip, 'red')
-                msg = { 'host' : domain_ip, 'status' : 'unsafe' }
+                msg = { 'squidmagic': 'squidmagic', 'host' : domain_ip, 'status' : 'unsafe' }
                 zmq_socket.send_json(msg)
 
         def css_spamhaus():
@@ -226,11 +226,11 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
             response = sh.check_status(domain_ip)
             if response['status'] == '0':
                 print '\t', colored("safe server detected, host or ip is "  + domain_ip, 'green')
-                msg = { 'host' : domain_ip, 'status' : 'safe' }
+                msg = { 'squidmagic': 'squidmagic', 'host' : domain_ip, 'status' : 'safe' }
                 zmq_socket.send_json(msg)
             else:
                 print '\t', colored("Spam server detected, ip is "  + domain_ip, 'red')
-                msg = { 'host' : domain_ip, 'status' : 'unsafe' }
+                msg = { 'squidmagic': 'squidmagic', 'host' : domain_ip, 'status' : 'unsafe' }
                 zmq_socket.send_json(msg)
 
         def pbl_spamhaus():
@@ -247,11 +247,11 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
 
             if response['status'] == '0':
                 print '\t', colored("safe server detected, host or ip is "  + domain_ip, 'green')
-                msg = { 'host' : domain_ip, 'status' : 'safe' }
+                msg = { 'squidmagic': 'squidmagic', 'host' : domain_ip, 'status' : 'safe' }
                 zmq_socket.send_json(msg)
             else:
                 print '\t', colored("Spam server detected, ip is "  + domain_ip, 'red')
-                msg = { 'host' : domain_ip, 'status' : 'unsafe' }
+                msg = { 'squidmagic': 'squidmagic', 'host' : domain_ip, 'status' : 'unsafe' }
                 zmq_socket.send_json(msg)
         
         def xbl_spamhaus():
@@ -268,11 +268,11 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
             
             if response['status'] == '0':
                 print '\t', colored("safe server detected, host or ip is "  + domain_ip, 'green')
-                msg = { 'host' : domain_ip, 'status' : 'safe' }
+                msg = { 'squidmagic': 'squidmagic', 'host' : domain_ip, 'status' : 'safe' }
                 zmq_socket.send_json(msg)
             else:
                 print '\t', colored("Malicious web server detected, ip is "  + domain_ip, 'red')
-                msg = { 'host' : domain_ip, 'status' : 'unsafe' }
+                msg = { 'squidmagic': 'squidmagic', 'host' : domain_ip, 'status' : 'unsafe' }
                 zmq_socket.send_json(msg)
 
         def main():
