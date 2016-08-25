@@ -54,3 +54,26 @@ Analyzing by PBL Advisory...
 
 ```
 
+# run server (in /squidmagic/lib/bin)
+
+```
+php server.php
+
+Array
+(
+    [status] => safe
+    [host] => 93.184.220.29
+)
+Array
+(
+    [status] => safe
+    [host] => 93.184.220.29
+)
+Array
+(
+    [status] => safe
+    [host] => 93.184.220.29
+)
+
+```
+
