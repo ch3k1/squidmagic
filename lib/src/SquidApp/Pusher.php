@@ -5,21 +5,24 @@ use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\WampServerInterface;
 
 class Pusher implements WampServerInterface {
+
     public function onSubscribe(ConnectionInterface $conn, $topic) {
          $this->subscribedTopics[$topic->getId()] = $topic;
+    
     }
 
     public function onBlogEntry($entry) {
+        
         $entryData = json_decode($entry, true);
+
         print_r($entryData);
-        // If the lookup topic object isn't set there is no one to publish to
-        if (!array_key_exists($entryData['category'])) {
+        
+        if (!array_key_exists($entryData['squidmagic'] , $this->subscribedTopics)) {
             return;
         }
 
-        //$topic = $this->subscribedTopics[$entryData['category']];
+        $topic = $this->subscribedTopics[$entryData['squidmagic']];
 
-        // re-send the data to all the clients subscribed to that category
         $topic->broadcast($entryData);
     }
     public function onUnSubscribe(ConnectionInterface $conn, $topic) {
