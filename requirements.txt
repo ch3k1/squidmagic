@@ -2,3 +2,4 @@ sh
 termcolor
 configparser
 dnspython
+pyzmq
