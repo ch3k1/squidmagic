@@ -54,7 +54,7 @@ Analyzing by PBL Advisory...
 
 ```
 
-### Run server (in /squidmagic/lib/bin)
+### Run server
 
 ```
 php server.php
