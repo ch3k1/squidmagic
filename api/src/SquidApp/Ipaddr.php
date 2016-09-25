@@ -16,6 +16,7 @@ class Ipaddr {
               $this->address = $ip;
 	} else {
               echo json_encode(array('status' => $ip . ' ' . 'is not a valid IP address')) .PHP_EOL;
+	      return;
 	}
   }
 
