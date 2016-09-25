@@ -22,7 +22,7 @@ class Ipaddr {
   }
 
   public function getAddress() {
-  	
+	  
       return $this->address;
   } 
 
