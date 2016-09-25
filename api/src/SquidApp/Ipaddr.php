@@ -18,9 +18,11 @@ class Ipaddr {
 	} else {
              throw new Exception($ip . ' ' . 'is not a valid IP address');
 	}
+
   }
 
   public function getAddress() {
+  	
       return $this->address;
   } 
 
