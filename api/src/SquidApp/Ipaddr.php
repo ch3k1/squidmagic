@@ -1,6 +1,7 @@
 <?php
 
 namespace SquidApp;
+use Exception;
 
 class Ipaddr {
 
@@ -13,10 +14,9 @@ class Ipaddr {
   public function setAddress($ip) {
   	
   	if (!filter_var($ip, FILTER_VALIDATE_IP) === false) {
-              $this->address = $ip;
+             $this->address = $ip;
 	} else {
-              echo json_encode(array('status' => $ip . ' ' . 'is not a valid IP address')) .PHP_EOL;
-	      return;
+             throw new Exception($ip . ' ' . 'is not a valid IP address');
 	}
   }
 
