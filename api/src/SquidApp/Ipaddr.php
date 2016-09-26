@@ -6,9 +6,11 @@ use Exception;
 class Ipaddr {
 
   private $address;
+  private $port;
 
-  function __construct($address = '') {
+  function __construct($address = '', $port = '') {
       $this->address = $address;
+      $this->port    = $port;
   }
 
   public function setAddress($ip) {
@@ -25,5 +27,15 @@ class Ipaddr {
 	  
       return $this->address;
   } 
+
+  public function checkPort($port) {
+
+
+  }
+
+  public function getPort() {
+
+      return $this->port;
+  }
 
 }
