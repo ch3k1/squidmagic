@@ -13,3 +13,6 @@ $ip = $argv[1];
 
 $pusher->setAddress($ip);
 print_r($pusher->getAddress() . PHP_EOL);
+
+$pusher->checkPort('80');
+print_r($pusher->getPort() . PHP_EOL);
