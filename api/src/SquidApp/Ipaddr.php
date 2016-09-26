@@ -30,7 +30,11 @@ class Ipaddr {
 
   public function checkPort($port) {
 
-
+       if(isset($port)) {
+           $this->port = $port;
+       } else {
+           throw new Exception($port . ' ' . 'not found');
+       }
   }
 
   public function getPort() {
