@@ -6,20 +6,18 @@ use Exception;
 class Ipaddr {
 
   private $address;
-  private $port;
 
-  function __construct($address = '', $port = '') {
+  function __construct($address = '') {
       $this->address = $address;
-      $this->port    = $port;
   }
 
   public function setAddress($ip) {
   	
   	if (!filter_var($ip, FILTER_VALIDATE_IP) === false) {
              $this->address = $ip;
-	} else {
-             throw new Exception($ip . ' ' . 'is not a valid IP address');
-	}
+  	} else {
+               throw new Exception($ip . ' ' . 'is not a valid IP address');
+  	}
 
   }
 
@@ -27,19 +25,5 @@ class Ipaddr {
 	  
       return $this->address;
   } 
-
-  public function checkPort($port) {
-
-       if(isset($port)) {
-           $this->port = $port;
-       } else {
-           throw new Exception($port . ' ' . 'not found');
-       }
-  }
-
-  public function getPort() {
-
-      return $this->port;
-  }
 
 }
