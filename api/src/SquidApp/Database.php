@@ -2,7 +2,7 @@
 
 namespace SquidApp;
 
-class Database{
+class Database {
  
     private $host = "";
     private $db_name = "";
