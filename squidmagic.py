@@ -191,6 +191,7 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
         duration, byte, address, code_status, num_bytes, method, urls, rfc931, HIER_DIRECT, _ = line.split()[:10]
 
         def sbl_spamhaus():
+            time.sleep(2)
             sys.stdout.write(colored(colors['BOLD']['code'] + "Analyzing by SBL Advisory...\n" + colors['END']['code'], 'blue'))
             ips = re.findall('(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})', HIER_DIRECT)
             if not ips:
@@ -211,6 +212,7 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
                 zmq_socket.send_json(msg)
 
         def css_spamhaus():
+            time.sleep(2)
             sys.stdout.write(colored(colors['BOLD']['code'] + "Analyzing by SBL_CSS Advisory...\n" + colors['END']['code'], 'blue'))
             ips = re.findall('(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})', HIER_DIRECT)
             if not ips:
@@ -231,6 +233,7 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
                 zmq_socket.send_json(msg)
 
         def pbl_spamhaus():
+            time.sleep(2)
             sys.stdout.write(colored(colors['BOLD']['code'] + "Analyzing by PBL Advisory...\n" + colors['END']['code'], 'blue'))
             ips = re.findall('(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})', HIER_DIRECT)
             if not ips:
@@ -252,6 +255,7 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
                 zmq_socket.send_json(msg)
         
         def xbl_spamhaus():
+            time.sleep(2)
             sys.stdout.write(colored(colors['BOLD']['code'] + "Analyzing by XBL Advisory...\n" + colors['END']['code'], 'blue'))
             ips = re.findall('(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})', HIER_DIRECT)
             if not ips:
