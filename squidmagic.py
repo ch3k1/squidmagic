@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/python
 import sys,os,argparse,re
 import signal,time
 import dns.resolver
@@ -21,10 +21,7 @@ if len(sys.argv) <= 1:
     print("Please give some options, type -h for more information")
     sys.exit()
 
-def sigint_handler(signum, frame):
-    if raw_input("\n Do you really want to shut down the process? (y/n)> ").lower().startswith('y'):
-        sys.exit(0)
-signal.signal(signal.SIGINT, sigint_handler)
+signal.signal(signal.SIGINT, signal.SIG_DFL);
  
 class squidmagic(object):
     def __init__(self, apiattr, species):
