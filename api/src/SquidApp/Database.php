@@ -5,9 +5,9 @@ namespace SquidApp;
 class Database {
  
     private $host = "localhost";
-    private $db_name = "netflow";
-    private $username = "root";
-    private $password = "12345678";
+    private $db_name = "";
+    private $username = "";
+    private $password = "";
     public $conn;
  
     // db connection
