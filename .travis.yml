@@ -5,8 +5,8 @@ php:
   - hhvm
   - nightly
 before_script:  
+  - cd api/
   - composer self-update
   - composer install
-  - composer dump-autoload -o
 
 script: phpunit
