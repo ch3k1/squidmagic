@@ -6,4 +6,7 @@ php:
   - nightly
 env:
   - TEST_DIR=api
-script: cd $TEST_DIR && composer install 
+before_script:
+  - sudo apt-get update
+  - sudo cd $TEST_DIR
+  - sudo composer install
