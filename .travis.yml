@@ -4,4 +4,4 @@ php:
   - '7.0'
   - hhvm
   - nightly
-script: cd api/src/bin && php checkip.php
+script: cd api && composer install && php src/bin/checkip.php
