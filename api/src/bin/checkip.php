@@ -5,6 +5,7 @@ namespace SquidApp;
 require dirname(__DIR__) . '/../vendor/autoload.php';
 
 $ipaddr = new Ipaddr();
+$database = new Database();
 
 if ($argc !== 2) {
     echo "Usage: php app.php [ipaddress].\n";
