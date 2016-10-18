@@ -4,7 +4,7 @@ namespace SquidApp;
 
 class Database {
  
-    private $host = "localhost";
+    private $host = "";
     private $db_name = "";
     private $username = "";
     private $password = "";
