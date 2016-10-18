@@ -4,7 +4,6 @@ php:
   - '7.0'
   - hhvm
   - nightly
-before_script:
-  - sudo apt-get update
-  - sudo cd api
-  - sudo composer install
+install:
+  - composer install --path api
+
