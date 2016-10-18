@@ -4,9 +4,7 @@ php:
   - '7.0'
   - hhvm
   - nightly
-env:
-  - TEST_DIR=api
 before_script:
   - sudo apt-get update
-  - sudo cd $TEST_DIR
+  - sudo cd api
   - sudo composer install
