@@ -4,4 +4,6 @@ php:
   - '7.0'
   - hhvm
   - nightly
-script: cd api && composer install
+env:
+  - TEST_DIR=api
+script: cd $TEST_DIR && composer install 
