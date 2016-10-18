@@ -4,5 +4,4 @@ php:
   - '7.0'
   - hhvm
   - nightly
-script: cd ch3k1/squidmagic/api && composer install 
-
+script: cd api/src/bin && php checkip.php
