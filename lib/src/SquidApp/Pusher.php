@@ -11,11 +11,13 @@ class Pusher implements WampServerInterface {
     
     }
 
-    public function onBlogEntry($entry) {
+    public function onNetworkEntry($entry) {
 
         $db = new Database();
         
         $entryData = json_decode($entry, true);
+
+        print_r($entryData);
         
         if (!array_key_exists($entryData['squidmagic'] , $this->subscribedTopics)) {
             return;
