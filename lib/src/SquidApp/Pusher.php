@@ -1,6 +1,5 @@
 <?php
 namespace SquidApp;
-error_reporting(0);
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\WampServerInterface;
 
@@ -8,24 +7,12 @@ class Pusher implements WampServerInterface {
 
     public function onSubscribe(ConnectionInterface $conn, $topic) {
          $this->subscribedTopics[$topic->getId()] = $topic;
-    
     }
 
     public function onNetworkEntry($entry) {
-
-        $db = new Database();
-        
+        $createRecord = new Insert();
+        $createRecord->createFlow($entry);
         $entryData = json_decode($entry, true);
-
-        print_r($entryData);
-        
-        if (!array_key_exists($entryData['squidmagic'] , $this->subscribedTopics)) {
-            return;
-        }
-
-        $topic = $this->subscribedTopics[$entryData['squidmagic']];
-
-        $topic->broadcast($entryData);
     }
     public function onUnSubscribe(ConnectionInterface $conn, $topic) {
     }

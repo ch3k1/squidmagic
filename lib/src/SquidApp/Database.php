@@ -5,11 +5,11 @@ namespace SquidApp;
 
 class Database {
  
-    private $host = "localhost";
-    private $db_name = "";
+    private $host     = "localhost";
+    private $db_name  = "squidmagic";
     private $username = "";
     private $password = "";
-    public $conn;
+    public  $conn;
  
     // db connection
     public function getConnection(){
@@ -23,9 +23,5 @@ class Database {
         }
  
         return $this->conn;
-    }
-
-    public function insert() {
-    	 echo "1234";
     }
 }
