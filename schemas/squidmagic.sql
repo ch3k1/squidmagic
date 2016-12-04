@@ -23,5 +23,6 @@ CREATE TABLE IF NOT EXISTS `squidmagic_c2c` (
   `squid` varchar(16) NOT NULL,
   `status` varchar(16) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `country` varchar(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
