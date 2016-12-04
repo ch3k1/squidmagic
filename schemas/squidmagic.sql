@@ -1,3 +1,4 @@
+
 CREATE TABLE IF NOT EXISTS `squidmagic_c2c` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `ipaddress` varchar(20) NOT NULL,
