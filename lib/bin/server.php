@@ -1,9 +1,12 @@
 <?php
 
     require dirname(__DIR__) . '/vendor/autoload.php';
+    $banner = new SquidApp\Squid();
     $address = new SquidApp\Request();
     $loop   = React\EventLoop\Factory::create();
     $pusher = new SquidApp\Pusher;
+
+    echo $banner->bannerAction();
 
     // Listen for the web server to make a ZeroMQ push after an ajax request
     $context = new React\ZMQ\Context($loop);

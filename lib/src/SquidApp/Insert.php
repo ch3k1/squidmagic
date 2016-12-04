@@ -5,7 +5,8 @@ namespace SquidApp;
 /**
 *  inserting collected data  
 */
-class Insert extends Database
+
+class Insert 
 {
 	public $conn;
 	
@@ -15,6 +16,7 @@ class Insert extends Database
 	}
 
 	public function createFlow($entry) {
+     
         $conn = $this->conn->getConnection();
 		$entryData = json_decode($entry, true);
 		
