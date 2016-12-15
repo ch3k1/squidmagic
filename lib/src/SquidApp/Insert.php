@@ -11,6 +11,8 @@ use GeoIp2\Database\Reader;
 class Insert 
 {
 	public $conn;
+
+	const GEOIPDB = '../../lib/GeoIP/GeoLite2-Country.mmdb';
 	
 	public function __construct()
 	{
@@ -19,18 +21,19 @@ class Insert
 
 	public function createFlow($entry) {
      
-        $conn = $this->conn->getConnection();
+        $conn      = $this->conn->getConnection();
 		$entryData = json_decode($entry, true);
-		$reader = new Reader('../../lib/GeoIP/GeoLite2-Country.mmdb');
-		$record = $reader->country($entryData["host"]);
-		$isoCode = $record->country->isoCode;
+		$reader    = new Reader(self::GEOIPDB);
+		$record    = $reader->country($entryData["host"]);
+		$isoCode   = $record->country->isoCode;
 
 		if($this->conn->getConnection()) {
 
             $query = "INSERT INTO
                     squidmagic_c2c
                 SET
-                    ipaddress = ?, squid = ?, status = ?, country = ?";
+                    ipaddress = ?, squid = ?, 
+                    status = ?, country = ?";
 
 	        $stmt = $conn->prepare($query); 
 	        // bind values
