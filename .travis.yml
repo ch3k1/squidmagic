@@ -5,5 +5,5 @@ php:
   - hhvm
   - nightly
 env:
-  - TEST_DIR=api
+  - TEST_DIR=lib
 script: cd $TEST_DIR && composer install
