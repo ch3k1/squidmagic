@@ -1,49 +1,53 @@
 <?php
 
 namespace SquidApp;
-
 use GeoIp2\Database\Reader;
 
 /**
 *  inserting collected data  
 */
-
 class Insert 
 {
 	public $conn;
-	
 	const GEOIPDB = '../../lib/GeoIP/GeoLite2-Country.mmdb';
 	
 	public function __construct()
 	{
-	   $this->conn = new Database();
+		$this->conn = new Database();
 	}
 
-	public function createFlow($entry) {
-     
-           $conn      = $this->conn->getConnection();
-	   $entryData = json_decode($entry, true);
-	   $reader    = new Reader(self::GEOIPDB);
-	   $record    = $reader->country($entryData["host"]);
-	   $isoCode   = $record->country->isoCode;
+	static public function checkIpaddr($entry) {
+		
+		$entryData = json_decode($entry, true);
+		if(filter_var($entryData['host'], FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE)) {
+             return $entryData['host'];
+        }
+	}
 
-	if($this->conn->getConnection()) {
+	public function createFlow($entry, $ipaddr) {
 
-                $query = "INSERT INTO
+        $conn      = $this->conn->getConnection();
+		$entryData = json_decode($entry, true);
+		$reader    = new Reader(self::GEOIPDB);
+		$record    = $reader->country($ipaddr);
+		$isoCode   = $record->country->isoCode;
+		
+		if($this->conn->getConnection()) {
+            $query = "INSERT INTO
                     squidmagic_c2c
                 SET
                     ipaddress = ?, squid = ?, 
                     status = ?, country = ?";
-
 	        $stmt = $conn->prepare($query); 
-	        $stmt->bindParam(1, $entryData['host']);
+	        // bind values
+	        $stmt->bindParam(1, $ipaddr);
 	        $stmt->bindParam(2, $entryData['squidmagic']);
 	        $stmt->bindParam(3, $entryData['status']);
 	        $stmt->bindParam(4, $isoCode);
 	 
-	  if($stmt->execute()) {
-	       return true;
-	  }
-       }
-    }
+	        if($stmt->execute()){
+	             return true;
+	        }
+		}
+	}
 }

@@ -11,8 +11,10 @@ class Pusher implements WampServerInterface {
 
     public function onNetworkEntry($entry) {
         $createRecord = new Insert();
-        $createRecord->createFlow($entry);
-        $entryData = json_decode($entry, true);
+        $validip = $createRecord->checkIpaddr($entry);
+        if($validip) {
+            $createRecord->createFlow($entry,$validip);
+        }
     }
     public function onUnSubscribe(ConnectionInterface $conn, $topic) {
     }
