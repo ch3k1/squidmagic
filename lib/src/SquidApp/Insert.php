@@ -6,14 +6,29 @@ use GeoIp2\Database\Reader;
 /**
 *  inserting collected data  
 */
+
 class Insert 
 {
+
 	public $conn;
 	const GEOIPDB = '../../lib/GeoIP/GeoLite2-Country.mmdb';
 	
 	public function __construct()
 	{
 		$this->conn = new Database();
+	}
+
+	public function checkDublicate($ipaddress) {
+
+		$conn  = $this->conn->getConnection();
+		$query = "SELECT id FROM squidmagic_c2c WHERE ipaddress = :ipaddress"; 
+
+		$prepared = $conn->prepare($query);
+		$prepared->bindParam(':ipaddress', $ipaddress); 
+		$prepared->execute();
+		$objrecords = $prepared->fetchObject();
+
+		return $objrecords;
 	}
 
 	static public function checkIpaddr($entry) {
