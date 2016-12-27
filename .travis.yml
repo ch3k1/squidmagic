@@ -6,4 +6,7 @@ php:
   - nightly
 env:
   - TEST_DIR=lib
-script: cd $TEST_DIR && composer install
+script: cd $TEST_DIR  
+        pecl install zmq-beta  
+        echo "extension=zmq.so" >> /etc/php5/cli/php.ini 
+        composer install
