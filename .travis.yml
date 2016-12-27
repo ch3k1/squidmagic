@@ -1,12 +1,9 @@
 language: php
 php:
   - '5.6'
-  - '7.0'
-  - hhvm
-  - nightly
 env:
   - TEST_DIR=lib
 script: cd $TEST_DIR &&
-        pecl install zmq-beta &&  
+        printf "\n" | pecl install zmq-beta &&  
         echo "extension=zmq.so" >> /etc/php5/cli/php.ini && 
         composer install
