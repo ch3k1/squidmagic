@@ -5,5 +5,5 @@ env:
   - TEST_DIR=lib
 script: cd $TEST_DIR &&
         printf "\n" | pecl install zmq-beta &&  
-        echo "extension=zmq.so" >> /etc/php5/cli/php.ini && 
+        echo "extension=zmq.so" >> `php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"` && 
         composer install
