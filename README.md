@@ -6,7 +6,7 @@ squidmagic is a tool designed to analyze a web-based network traffic to detect c
 
 ```
 apt-get -y install squid3 libzmq3-dev
-apt-get install php-pear
+apt-get install php-pear php-dev
 pecl install zmq-beta
 ```
 
