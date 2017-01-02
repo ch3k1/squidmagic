@@ -1,0 +1,3 @@
+config/*.pyc
+modules/*.pyc
+core/*.pyc
