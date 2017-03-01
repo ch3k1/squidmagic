@@ -56,7 +56,7 @@ Analyzing by PBL Advisory...
 
 ### Run server
 
-```
+```php
 
 <?php
 namespace SquidApp\Core;
