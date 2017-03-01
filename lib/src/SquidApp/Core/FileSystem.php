@@ -15,11 +15,7 @@ class FileSystem
 		// Scans a directory for files
 	    $scandir = scandir($path);
 	    if($scandir === false) {
-	    	try {
-                throw new \SquidApp\Exception\ServerFolderNotFoundException('Server Folder Not found');
-			} catch (\SquidApp\Exception\ServerFolderNotFoundException $e) {
-				echo 'Caught exception: ' . $e->getMessage() . "\n";
-			}
+            throw new \SquidApp\Exception\ServerFolderNotFoundException('Server Folder Not found');
 	    }
 
 	}
@@ -29,11 +25,7 @@ class FileSystem
 		// Checks if file exists in certain location 
 		$fileExists = file_exists($path);
 	    if($fileExists === false) {
-	    	try {
-                throw new \SquidApp\Exception\FileExistsException('Collector File Not found');
-			} catch (\SquidApp\Exception\FileExistsException $e) {
-				echo 'Caught exception: ' . $e->getMessage() . "\n";
-			}
+            throw new \SquidApp\Exception\FileExistsException('Collector File Not found');
 	    }
 
 	}
