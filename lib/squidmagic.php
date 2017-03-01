@@ -11,10 +11,10 @@ $squidmagic = new FileSystem();
 echo $banner->bannerAction();
 
 // Scans a directory for files
-$squidmagic->scandirs('/home/cheki/squidmagic/lib/bin');
+$squidmagic->scandirs('squidmagic/Collector path');
 
 // Checks if file exists in certain location 
-$squidmagic->fileExists('/home/cheki/squidmagic/lib/bin/server.php');
+$squidmagic->fileExists('Collector Path/server.php');
 
 // run server
-$squidmagic->openInBackground('/home/cheki/squidmagic/lib/bin/');
+$squidmagic->openInBackground('Collector Path/lib/bin/');
