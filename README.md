@@ -2,32 +2,6 @@
 
 squidmagic is a tool designed to analyze a web-based network traffic to detect central command and control (C&C) servers and Malicious site, using Squid proxy server and Spamhaus.
 
-### Install Squid and configure Proxy server and Zeromq
-
-```
-apt-get -y install squid3 libzmq3-dev
-apt-get install php-pear php-dev
-pecl install zmq-beta
-```
-
-### simple squid3 configuration to Allow all machines to all sites
-
-```
-http_access allow all 
-```
-
-### Instalation
-
-	git clone https://github.com/ch3k1/squidmagic
-	cd squidmagic
-	pip install -r requirements.txt
-
-### Install React/ZMQ (in lib folder)
-
-```
-composer install
-```
-
 ## usage
 
 ```
