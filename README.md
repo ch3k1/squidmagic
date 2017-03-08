@@ -8,6 +8,7 @@ Clone this repo & execute the script
 
 ```
 squidmagic# ./install.sh
+
 ✓ Installing system packages
 ✓ Cloning repositories
 ✓ Installing python packages
