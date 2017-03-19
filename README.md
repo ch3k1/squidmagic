@@ -81,3 +81,7 @@ squidmagic/lib # php squidmagic.php
         
 ```
 
+
+### External Links
+
+* [Twitter](https://twitter.com/avardanidze1)
