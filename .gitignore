@@ -1,3 +1,5 @@
 config/*.pyc
 modules/*.pyc
 core/*.pyc
+lib/composer.lock
+lib/vendor/
