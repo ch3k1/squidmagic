@@ -2,21 +2,12 @@
 
 namespace SquidApp;
 
-/**
-*  squidmagic banner
-*/
 class Squid
 {
-	public $banner;
-	
-	function __construct($banner = null)
-	{
-		$this->banner = $banner;
-	}
 
-	public function bannerAction() {
+	static public function bannerAction() {
         
-        $this->banner = "
+        $banner = "
                                                             
 		                      | |                          
 		 ___  __ _ _   _ _  __| |_ __ ___   __ _  __ _ _  ___ 
@@ -28,6 +19,6 @@ class Squid
 		            squidmagic collector started   
 		";
 
-		return $this->banner;
+		return $banner;
 	}
 }
