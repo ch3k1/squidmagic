@@ -45,24 +45,25 @@ Analyzing by PBL Advisory...
 ```php
 
 <?php
+
 namespace SquidApp\Core;
+use \SquidApp\Squid;
 
 require dirname(__DIR__) . '/lib/vendor/autoload.php';
 
-$banner = new \SquidApp\Squid();
 $squidmagic = new FileSystem();
 
 // output banner
-echo $banner->bannerAction();
+echo Squid::bannerAction();
 
 // Scans a directory for files
-$squidmagic->scandirs('squidmagic/Collector path');
+$squidmagic->scandirs(__DIR__.'/bin');
 
 // Checks if file exists in certain location 
-$squidmagic->fileExists('Collector Path/server.php');
+$squidmagic->fileExists(__DIR__.'/bin/server.php');
 
 // run server
-$squidmagic->openInBackground('Collector Path/lib/bin/');
+$squidmagic->openInBackground(__DIR__.'/bin/');
 
 ```
 
