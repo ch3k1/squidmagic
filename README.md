@@ -2,17 +2,13 @@
 
 squidmagic is a tool designed to analyze a web-based network traffic to detect central command and control (C&C) servers and Malicious site, using Squid proxy server and Spamhaus.
 
-### Install Ubuntu 16.04
+### Install 
 
-Clone this repo & execute the script
+Clone this repo
 
 ```
-squidmagic# ./install.sh
-
-✓ Installing system packages
-✓ Cloning repositories
-✓ Installing python packages
-✓ Installing php packages
+squidmagic# pip install -r requirements.txt
+squidmagic/lib# composer install
 
 ```
 
