@@ -2,6 +2,7 @@
 namespace SquidApp;
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\WampServerInterface;
+use SquidApp\Insert;
 
 class Pusher implements WampServerInterface {
 
@@ -10,12 +11,11 @@ class Pusher implements WampServerInterface {
     }
 
     public function onNetworkEntry($entry) {
-        $createRecord = new Insert();
         // Check Duplicate
         $entryData = json_decode($entry, true);
-        $checkIp = $createRecord->checkDuplicate($entryData['host']);
+        $checkIp = Insert::checkDuplicate($entryData['host']);
         // check if ip is private
-        $validIp = $createRecord->checkIpAddress($entry);
+        $validIp = Insert::checkIpAddress($entry);
         if($validIp && !isset($checkIp['id'])) {
             $createRecord->createFlow($entry,$validIp);
         }
