@@ -4,8 +4,6 @@ squidmagic is a tool designed to analyze a web-based network traffic to detect c
 
 ### Install 
 
-Clone this repo
-
 ```
 squidmagic# pip install -r requirements.txt
 squidmagic/lib# composer install
