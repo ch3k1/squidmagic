@@ -11,13 +11,13 @@ class Pusher implements WampServerInterface {
 
     public function onNetworkEntry($entry) {
         $createRecord = new Insert();
-        // check dublicate
+        // Check Duplicate
         $entryData = json_decode($entry, true);
-        $checkip = $createRecord->checkDublicate($entryData['host']);
+        $checkIp = $createRecord->checkDuplicate($entryData['host']);
         // check if ip is private
-        $validip = $createRecord->checkIpaddr($entry);
-        if($validip && !isset($checkip->id)) {
-            $createRecord->createFlow($entry,$validip);
+        $validIp = $createRecord->checkIpAddress($entry);
+        if($validIp && !isset($checkIp['id'])) {
+            $createRecord->createFlow($entry,$validIp);
         }
     }
     public function onUnSubscribe(ConnectionInterface $conn, $topic) {

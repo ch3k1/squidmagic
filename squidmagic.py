@@ -194,6 +194,7 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
             time.sleep(2)
             sys.stdout.write(colored(colors['BOLD']['code'] + "Analyzing by SBL Advisory...\n" + colors['END']['code'], 'blue'))
             ips = re.findall('(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})', HIER_DIRECT)
+            ips = ['8.8.8.8']
             if not ips:
                 print '\t', colored("The IP address or hostname where the request was forwarded not found", 'red')
                 return

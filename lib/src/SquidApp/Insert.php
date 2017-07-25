@@ -2,67 +2,56 @@
 
 namespace SquidApp;
 use GeoIp2\Database\Reader;
-
-/**
-*  inserting collected data  
-*/
+use SquidApp\Core\Database;
 
 class Insert 
 {
 
-	public $conn;
-	const GEOIPDB = '../../lib/GeoIP/GeoLite2-Country.mmdb';
-	
-	public function __construct()
-	{
-		$this->conn = new Database();
+	const ipDb = 'GeoLite2-Country.mmdb';
+
+    /**
+     * @param $ipAddress
+     * @return mixed
+     * Check Duplicate Records
+     */
+	static public function checkDuplicate($ipAddress) {
+
+        $checkDuplicate = Database::getRow("SELECT id FROM squidmagic_c2c WHERE ipaddress = ?", $ipAddress);
+		return $checkDuplicate;
 	}
 
-	public function checkDublicate($ipaddress) {
+    /**
+     * @param $entry
+     * @return mixed
+     * check if ip address is valid
+     */
+	static public function checkIpAddress($entry) {
 
-		$conn  = $this->conn->getConnection();
-		$query = "SELECT id FROM squidmagic_c2c WHERE ipaddress = :ipaddress"; 
-
-		$prepared = $conn->prepare($query);
-		$prepared->bindParam(':ipaddress', $ipaddress); 
-		$prepared->execute();
-		$objrecords = $prepared->fetchObject();
-
-		return $objrecords;
-	}
-
-	static public function checkIpaddr($entry) {
-		
 		$entryData = json_decode($entry, true);
 		if(filter_var($entryData['host'], FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE)) {
              return $entryData['host'];
         }
 	}
 
-	public function createFlow($entry, $ipaddr) {
+    /**
+     * @param $entry
+     * @param $ipAddress
+     * This function create's records into the DB
+     */
+	static public function createFlow($entry, $ipAddress) {
 
-        $conn      = $this->conn->getConnection();
 		$entryData = json_decode($entry, true);
-		$reader    = new Reader(self::GEOIPDB);
-		$record    = $reader->country($ipaddr);
+		$reader    = new Reader(self::ipDb);
+		$record    = $reader->country($ipAddress);
 		$isoCode   = $record->country->isoCode;
-		
-		if($this->conn->getConnection()) {
-            $query = "INSERT INTO
-                    squidmagic_c2c
-                SET
-                    ipaddress = ?, squid = ?, 
-                    status = ?, country = ?";
-	        $stmt = $conn->prepare($query); 
-	        // bind values
-	        $stmt->bindParam(1, $ipaddr);
-	        $stmt->bindParam(2, $entryData['squidmagic']);
-	        $stmt->bindParam(3, $entryData['status']);
-	        $stmt->bindParam(4, $isoCode);
-	 
-	        if($stmt->execute()){
-	             return true;
-	        }
-		}
+
+        $data = array(
+            "ipaddress"  => $ipAddress,
+            "squid"      => $entryData['squidmagic'],
+            "status"     => $entryData['status'],
+            "country"    => $isoCode,
+        );
+
+        Database::insert('squidmagic_c2c', $data, null);
 	}
 }

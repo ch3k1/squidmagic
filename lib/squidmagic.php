@@ -1,6 +1,6 @@
 <?php
-
 namespace SquidApp\Core;
+
 use \SquidApp\Squid;
 
 require dirname(__DIR__) . '/lib/vendor/autoload.php';
