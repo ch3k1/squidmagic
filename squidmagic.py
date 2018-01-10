@@ -1,4 +1,5 @@
 #!/usr/bin/python
+
 import sys,os,argparse,re
 import signal,time
 import dns.resolver
