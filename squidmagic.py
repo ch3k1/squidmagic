@@ -194,7 +194,7 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
         def sbl_spamhaus():
             time.sleep(2)
             sys.stdout.write(colored(colors['BOLD']['code'] + "Analyzing by SBL Advisory...\n" + colors['END']['code'], 'blue'))
-            ips = re.findall('(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})', HIER_DIRECT)
+            ips = re.findall(r'[0-9]+(?:\.[0-9]+){3}', HIER_DIRECT)
             if not ips:
                 print '\t', colored("The IP address or hostname where the request was forwarded not found", 'red')
                 return
@@ -215,7 +215,7 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
         def css_spamhaus():
             time.sleep(2)
             sys.stdout.write(colored(colors['BOLD']['code'] + "Analyzing by SBL_CSS Advisory...\n" + colors['END']['code'], 'blue'))
-            ips = re.findall('(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})', HIER_DIRECT)
+            ips = re.findall(r'[0-9]+(?:\.[0-9]+){3}', HIER_DIRECT)
             if not ips:
                 print '\t', colored("The IP address or hostname where the request was forwarded not found", 'red')
                 return
@@ -236,7 +236,7 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
         def pbl_spamhaus():
             time.sleep(2)
             sys.stdout.write(colored(colors['BOLD']['code'] + "Analyzing by PBL Advisory...\n" + colors['END']['code'], 'blue'))
-            ips = re.findall('(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})', HIER_DIRECT)
+            ips = re.findall(r'[0-9]+(?:\.[0-9]+){3}', HIER_DIRECT)
             if not ips:
                 print '\t', colored("The IP address or hostname where the request was forwarded not found", 'red')
                 return
@@ -258,7 +258,7 @@ for i, line in enumerate(tail("-f", args.logfile_path, _iter=True)):
         def xbl_spamhaus():
             time.sleep(2)
             sys.stdout.write(colored(colors['BOLD']['code'] + "Analyzing by XBL Advisory...\n" + colors['END']['code'], 'blue'))
-            ips = re.findall('(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})', HIER_DIRECT)
+            ips = re.findall(r'[0-9]+(?:\.[0-9]+){3}', HIER_DIRECT)
             if not ips:
                 print '\t', colored("The IP address or hostname where the request was forwarded not found", 'red')
                 return
