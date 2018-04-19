@@ -55,7 +55,7 @@ else
   }
   
   run_and_log install_packages "Installing system packages"
-  run_and_log clone_repo "Cloning repositories" "Could not clone repos"
+  run_and_log clone_repo "Cloning repo" "Could not clone repo"
   run_and_log install_python_packages "Installing python packages"
 
 
