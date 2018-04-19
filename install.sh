@@ -5,9 +5,7 @@ SQUID_REPO='https://github.com/ch3k1/squidmagic'
 declare -a packages
 declare -a python_packages 
 python_packages=(sh configparser termcolor dnspython pyzmq)
-packages["ubuntu"]="python-pip git composer mysql-server-5.7 php php-common php-pear php-mbstring php-zmq php7.0-mysql php7.0-curl php7.0-zip"
-PHPLIB="squidmagic/lib"
-
+packages["ubuntu"]="python-pip git libzmq-dev"
 
 Color_Off='\033[0m'       # Text Reset
 LOG=$(mktemp)
@@ -27,7 +25,7 @@ else
     exit 1
 }
 
-  run_and_log(){
+  run_and_log() {
     $1 &> ${LOG} && {
         _log_icon=$log_icon_ok
     } || {
@@ -55,18 +53,10 @@ else
     pip install ${python_packages[@]}
     return 0
   }
-
-  # install php packages with composer
-  install_phpPackages(){
-    cd ${PHPLIB}
-    composer install
-    return 0
-  }
   
   run_and_log install_packages "Installing system packages"
   run_and_log clone_repo "Cloning repositories" "Could not clone repos"
   run_and_log install_python_packages "Installing python packages"
-  run_and_log install_phpPackages "Installing php packages"
 
 
 fi
