@@ -9,7 +9,7 @@ squidmagic# pip install -r requirements.txt
 
 ```
 
-## usage
+### usage
 
 ```
 squidmagic # python squidmagic.py /var/log/squid3/access.log
