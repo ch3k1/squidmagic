@@ -4,10 +4,9 @@ Squidmagic is a tool designed to analyze a web-based network traffic to detect c
 
 ```
 squidmagic# pip install -r requirements.txt
-
 ```
 
-### usage
+### Usage
 
 ```
 squidmagic # python squidmagic.py /var/log/squid3/access.log
