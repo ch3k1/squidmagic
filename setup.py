@@ -35,7 +35,7 @@ setup(
 
     entry_points={  
         'console_scripts': [
-            'squidmagic = app.squidmagic:main',
+            'squidmagic = squidmagic:main',
         ],
     },
 )
