@@ -1,3 +1,6 @@
 config/*.pyc
 modules/*.pyc
 core/*.pyc
+squidmagic.egg-info/
+dist/
+build/
